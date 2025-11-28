@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ForeverTunes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Smooth transition for the progress bar */
+        .progress-bar { transition: width 0.1s linear; }
+    </style>
+    <link rel="stylesheet" href="assets/css/audio-player.css">
+</head>
+<body class="min-h-screen bg-white font-sans text-gray-900">
+
+    <nav class="w-full bg-white py-4 px-6 md:px-12 flex items-center justify-between sticky top-0 z-50 border-b border-gray-100/50 backdrop-blur-sm">
+        <div class="flex items-center gap-2 text-gray-900 font-bold text-xl cursor-pointer">
+            <i data-lucide="music" class="w-6 h-6 fill-current"></i>
+            <span>ForeverTunes</span>
+        </div>
+
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+            <a href="#" class="hover:text-black transition-colors">Home</a>
+            <a href="#" class="hover:text-black transition-colors">Demo</a>
+            <a href="#" class="hover:text-black transition-colors">How It Works</a>
+            <a href="#" class="hover:text-black transition-colors">Contact</a>
+            <i data-lucide="instagram" class="w-5 h-5 cursor-pointer hover:text-black transition-colors"></i>
+        </div>
+
+        <button id="mobile-menu-btn" class="md:hidden text-gray-600">
+            <i data-lucide="menu" id="menu-icon"></i>
+            <i data-lucide="x" id="close-icon" class="hidden"></i>
+        </button>
+
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-white shadow-lg py-4 flex flex-col items-center gap-4 md:hidden border-t">
+            <a href="#" class="text-gray-600 hover:text-black">Home</a>
+            <a href="#" class="text-gray-600 hover:text-black">Demo</a>
+            <a href="#" class="text-gray-600 hover:text-black">How It Works</a>
+            <a href="#" class="text-gray-600 hover:text-black">Contact</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto px-6 md:px-12 py-12 space-y-20">
+        
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="bg-white border border-gray-100 rounded-xl p-8 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow duration-300">
+                <div class="mb-4 text-gray-800">
+                    <i data-lucide="sparkles" class="w-10 h-10" stroke-width="1.5"></i>
+                </div>
+                <h3 class="font-bold text-gray-900 text-lg mb-2">Special Events</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Music for anniversaries, corporate events, or any special occasion.</p>
+            </div>
+
+            <div class="bg-white border border-gray-100 rounded-xl p-8 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow duration-300">
+                <div class="mb-4 text-gray-800">
+                    <i data-lucide="heart" class="w-10 h-10" stroke-width="1.5"></i>
+                </div>
+                <h3 class="font-bold text-gray-900 text-lg mb-2">Romantic Songs</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Express your feelings through personalized love songs.</p>
+            </div>
+
+            <div class="bg-white border border-gray-100 rounded-xl p-8 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow duration-300">
+                <div class="mb-4 text-gray-800">
+                    <i data-lucide="headphones" class="w-10 h-10" stroke-width="1.5"></i>
+                </div>
+                <h3 class="font-bold text-gray-900 text-lg mb-2">Relaxing & Lofi</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Timeless melodies for relaxation, study, or meditation.</p>
+            </div>
+
+            <div class="bg-white border border-gray-100 rounded-xl p-8 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-shadow duration-300">
+                <div class="mb-4 text-gray-800">
+                    <i data-lucide="file-edit" class="w-10 h-10" stroke-width="1.5"></i>
+                </div>
+                <h3 class="font-bold text-gray-900 text-lg mb-2">Custom Requests</h3>
+                <p class="text-gray-500 text-sm leading-relaxed">Any theme or occasion? We'll craft the perfect track for you.</p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-center text-2xl md:text-3xl font-extrabold text-gray-900 mb-10">
+                Listen to User Creations
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="audio-grid">
+                </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-gray-50 pt-16 pb-8 px-6 md:px-12 border-t border-gray-100 mt-12">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-8 mb-16">
+            
+            <div class="col-span-2 md:col-span-1">
+                <div class="flex items-center gap-2 text-gray-900 font-bold text-lg mb-6">
+                    <i data-lucide="music" class="w-5 h-5 fill-current"></i>
+                    <span>ForeverTunes</span>
+                </div>
+                <div class="flex flex-col gap-2 mt-4 md:mt-12">
+                    <h5 class="font-bold text-gray-900 text-sm">Legal</h5>
+                    <a href="#" class="text-gray-500 text-sm hover:text-gray-900">Terms</a>
+                    <a href="#" class="text-gray-500 text-sm hover:text-gray-900">Privacy</a>
+                    <a href="#" class="text-gray-500 text-sm hover:text-gray-900">Instagram</a>
+                </div>
+            </div>
+
+            <div class="flex flex-col gap-3">
+                <h5 class="font-bold text-gray-900 text-sm">Platform</h5>
+                <a href="#" class="text-gray-500 text-sm hover:text-gray-900 transition-colors">Home</a>
+                <a href="#" class="text-gray-500 text-sm hover:text-gray-900 transition-colors">Demo</a>
+                <a href="#" class="text-gray-500 text-sm hover:text-gray-900 transition-colors">How It Works</a>
+            </div>
+
+            <div class="flex flex-col gap-3">
+                <h5 class="font-bold text-gray-900 text-sm">Learn</h5>
+                <a href="#" class="text-gray-500 text-sm hover:text-gray-900 transition-colors">About</a>
+                <a href="#" class="text-gray-500 text-sm hover:text-gray-900 transition-colors">Demo</a>
+            </div>
+
+            <div class="flex flex-col gap-3">
+                <h5 class="font-bold text-gray-900 text-sm">Learn</h5>
+                <a href="#" class="text-gray-500 text-sm hover:text-gray-900 transition-colors">About</a>
+                <a href="#" class="text-gray-500 text-sm hover:text-gray-900 transition-colors">Demo</a>
+            </div>
+
+            <div class="flex flex-col gap-3">
+                <h5 class="font-bold text-gray-900 text-sm">Support</h5>
+                <a href="#" class="text-gray-500 text-sm hover:text-gray-900 transition-colors">Contact</a>
+                <a href="#" class="text-gray-500 text-sm hover:text-gray-900 transition-colors">FAQ</a>
+            </div>
+        </div>
+
+        <div class="border-t border-gray-200 pt-8 text-center">
+            <p class="text-gray-400 text-xs">© 2025 ForeverTunes</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Initialize Icons
+        lucide.createIcons();
+
+        // 2. Mobile Menu Logic
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const closeIcon = document.getElementById('close-icon');
+
+        menuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+            }
+        });
+    </script>
+    <script src="assets/js/audio-player-ui.js"></script>
+
+        // 3. Audio Player Logic
+        // Data for players
+        const songs = [
+            { id: 1, title: "Wedding Song - Anjali & Raj", duration: "2:28" },
+            { id: 2, title: "Birthday Surprise - Rohan", duration: "2:37" },
+            { id: 3, title: "Romantic Dedication - Sneha", duration: "2:56" },
+            { id: 4, title: "Lofi Chill - Study Time", duration: "2:23" },
+            { id: 5, title: "Anniversary Special - Priya & Aman", duration: "3:10" },
+            { id: 6, title: "Romantic Duet - Deepak & Sakshi", duration: "3:41" }
+        ];
+
+        const audioGrid = document.getElementById('audio-grid');
+
+        // Function to create HTML for a player
+        function createPlayerHTML(song) {
+            return `
+            <div class="bg-white border border-gray-100 rounded-xl p-6 shadow-sm audio-player" data-id="${song.id}">
+                <h4 class="font-bold text-sm text-gray-900 mb-4">${song.title}</h4>
+                <div class="bg-gray-100 rounded-full p-2 flex items-center gap-3">
+                    <button class="play-btn w-8 h-8 flex items-center justify-center text-gray-600 hover:text-gray-900 transition-colors">
+                        <i data-lucide="play" class="w-4 h-4 fill-current icon-play"></i>
+                        <i data-lucide="pause" class="w-4 h-4 fill-current icon-pause hidden"></i>
+                    </button>
+                    <span class="text-[10px] font-medium text-gray-500 tabular-nums">0:00 / ${song.duration}</span>
+                    <div class="flex-1 h-1 bg-gray-300 rounded-full relative overflow-hidden cursor-pointer">
+                        <div class="progress-bar absolute top-0 left-0 h-full bg-gray-500 rounded-full w-0"></div>
+                    </div>
+                    <button class="text-gray-400 hover:text-gray-600"><i data-lucide="volume-2" class="w-4 h-4"></i></button>
+                    <button class="text-gray-400 hover:text-gray-600"><i data-lucide="more-vertical" class="w-4 h-4"></i></button>
+                </div>
+            </div>`;
+        }
+
+        // Render players
+        audioGrid.innerHTML = songs.map(createPlayerHTML).join('');
+        // Re-init icons for the newly added HTML
+        lucide.createIcons(); 
+
+        // Add Logic to Players
+        document.querySelectorAll('.audio-player').forEach(player => {
+            const btn = player.querySelector('.play-btn');
+            const playIcon = player.querySelector('.icon-play');
+            const pauseIcon = player.querySelector('.icon-pause');
+            const progressBar = player.querySelector('.progress-bar');
+            
+            let isPlaying = false;
+            let progress = 0;
+            let interval;
+
+            btn.addEventListener('click', () => {
+                isPlaying = !isPlaying;
+
+                if (isPlaying) {
+                    // Switch Icons
+                    playIcon.classList.add('hidden');
+                    pauseIcon.classList.remove('hidden');
+
+                    // Start Interval
+                    interval = setInterval(() => {
+                        if (progress >= 100) progress = 0;
+                        progress += 1;
+                        progressBar.style.width = `${progress}%`;
+                    }, 100);
+                } else {
+                    // Switch Icons
+                    playIcon.classList.remove('hidden');
+                    pauseIcon.classList.add('hidden');
+
+                    // Clear Interval
+                    clearInterval(interval);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
