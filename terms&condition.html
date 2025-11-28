@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forever Tunes - Privacy Policy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Custom tweaks to match specific feel if needed, though Tailwind covers most */
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col bg-white font-sans text-gray-900 selection:bg-gray-100">
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2 cursor-pointer" onclick="showSection('home')">
+                <img src="logo.png" alt="ForeverTunes Logo" class="h-8 w-8 object-contain">
+                <span class="text-xl font-bold">ForeverTunes</span>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8">
+                <!-- 'Demo' link removed as requested -->
+                <a href="#" class="nav-link text-gray-600 hover:text-black transition-colors"
+                    data-section="home">Home</a>
+                <a href="song.html" class="nav-link text-gray-600 hover:text-black transition-colors"
+                    data-section="home">Listen to our work</a>
+                <a href="work.html" class="nav-link text-gray-600 hover:text-black transition-colors"
+                    data-section="how it works">How It Works</a>
+                <a href="contact.html" class="nav-link text-gray-600 hover:text-black transition-colors"
+                    data-section="contact">Contact</a>
+                <a href="acsess.html" class="nav-link text-gray-600 hover:text-black transition-colors"
+                    data-section="contact">Customer Login</a>
+                <a href="track.html" class="nav-link text-gray-600 hover:text-black transition-colors"
+                    data-section="contact">Track your order </a>
+                <a href="https://www.instagram.com/forevertunes.in?igsh=MWRscHhkYmhncGNqeg==" target="_blank"
+                    rel="noopener noreferrer" class="text-gray-600 hover:text-black transition-colors">
+                    <!-- Instagram Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163zm0 1.441c-3.141 0-3.504.012-4.726.068-2.673.123-3.974 1.441-4.098 4.098-.056 1.222-.067 1.583-.067 4.726s.011 3.504.067 4.726c.124 2.657 1.425 3.974 4.098 4.098 1.222.056 1.584.068 4.726.068s3.504-.012 4.726-.068c2.673-.124 3.974-1.441 4.098-4.098.056-1.222.068-1.584.068-4.726s-.012-3.504-.068-4.726c-.124-2.657-1.425-3.974-4.098-4.098C15.504 3.615 15.141 3.604 12 3.604zm0 4.232c-2.404 0-4.35 1.946-4.35 4.35s1.946 4.35 4.35 4.35 4.35-1.946 4.35-4.35-1.946-4.35-4.35-4.35zm0 7.26c-1.605 0-2.91-1.305-2.91-2.91s1.305-2.91 2.91-2.91 2.91 1.305 2.91 2.91-1.305 2.91-2.91 2.91zm4.45-7.81c-.552 0-1 .448-1 1s.448 1 1 1 1-.448 1-1-.448-1-1-1z" />
+                    </svg>
+                </a>
+            </nav>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-600 hover:text-black focus:outline-none">
+                    <!-- Mobile Menu Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
+            <!-- 'Demo' link removed as requested -->
+            <a href="#" class="block py-3 px-6 text-sm hover:bg-gray-50 nav-link" data-section="home">Home</a>
+            <a href="#" class="block py-3 px-6 text-sm hover:bg-gray-50 nav-link" data-section="how-it-works">How It
+                Works</a>
+            <a href="#" class="block py-3 px-6 text-sm hover:bg-gray-50 nav-link" data-section="contact">Contact</a>
+            <a href="https://www.instagram.com/forevertunes.in?igsh=MWRscHhkYmhncGNqeg==" target="_blank"
+                rel="noopener noreferrer" class="block py-3 px-6 text-sm hover:bg-gray-50">Instagram</a>
+        </div>
+    </header>
+
+
+    <!-- Main Content Area -->
+    < <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+
+        <!-- Document Container (now includes the title and has white background) -->
+        <div class="bg-white shadow-sm z-10 sticky top-0">
+
+            <!-- Title moved inside to share white background -->
+            <div class="text-center mb-10 pt-0">
+                <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight">Terms and Conditions</h1>
+            </div>
+
+            <!-- Introduction -->
+            <p class="mb-8 leading-relaxed">
+                Welcome to ForeverTunes ("we", "our", "us"). By accessing or using our website, services, or placing an
+                order for any product, you agree to be bound by the following Terms & Conditions. Please read them
+                carefully before proceeding.
+            </p>
+
+            <!-- About ForeverTunes -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-3">About ForeverTunes</h2>
+                <p class="mb-4 leading-relaxed">
+                    ForeverTunes is a personalized music gifting and custom song creation platform offering bespoke
+                    audio and music products based on customer-provided instructions, preferences, and creative
+                    direction.
+                </p>
+                <p class="mb-4 leading-relaxed">
+                    All products are custom-made and crafted per individual order.
+                </p>
+                <p class="leading-relaxed">
+                    Welcome to ForeverTunes ("we", "our", "us"). By accessing or using our website, services, or placing
+                    an order for any product, you agree to be bound by the following Terms & Conditions. Please read
+                    them carefully before proceeding.
+                </p>
+            </section>
+
+            <!-- Acceptance of Terms -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-3">Acceptance of Terms</h2>
+                <ul class="list-disc pl-5 space-y-2 leading-relaxed">
+                    <li>By using this website or placing an order, you confirm that:</li>
+                    <li>You are at least 18 years old or have legal consent to use our services.</li>
+                    <li>You have read, understood, and agreed to these Terms & Conditions in full.</li>
+                    <li>You are entering into a legally binding agreement with ForeverTunes.</li>
+                    <li>If you do not agree with any part of these terms, you must not use our services.</li>
+                </ul>
+            </section>
+
+            <!-- Nature of Services -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-3">Nature of Services</h2>
+                <p class="mb-4 leading-relaxed">
+                    All songs and music creations are customized and made-to-order.
+                </p>
+                <p class="mb-4 leading-relaxed">
+                    Delivery timelines provided are estimates and may vary based on complexity and workload. Creative
+                    output is based on artistic interpretation, and exact replication of any reference provided cannot
+                    be guaranteed.
+                </p>
+                <p class="leading-relaxed">
+                    Final output style, rhythm, and tone may differ slightly due to the creative nature of music
+                    production.
+                </p>
+            </section>
+
+            <!-- No Refund Policy (Strict) -->
+            <section class="mb-8 p-4 bg-red-50 rounded-lg border border-red-200">
+                <h2 class="text-2xl font-semibold text-red-700 mb-3">No Refund Policy (Strict)</h2>
+                <p class="mb-2 font-medium leading-relaxed">
+                    IMPORTANT: ForeverTunes follows a strict NO REFUND policy.
+                </p>
+                <p class="mb-4 leading-relaxed">
+                    Due to the personalized and custom-made nature of our products: Once an order is placed and payment
+                    is completed, it CANNOT be cancelled.
+                </p>
+                <p class="mb-2 font-medium leading-relaxed">
+                    No refunds will be issued under any circumstances, including but not limited to:
+                </p>
+                <ul class="list-disc pl-5 space-y-1 text-sm leading-relaxed">
+                    <li>Change of mind</li>
+                    <li>Dissatisfaction with creative style</li>
+                    <li>Delay in delivery</li>
+                    <li>Incorrect details provided by the customer</li>
+                    <li>Failure to respond during revision stages</li>
+                </ul>
+                <p class="mt-4 leading-relaxed">
+                    By completing your payment, you explicitly acknowledge and accept that you are not eligible for any
+                    refund or chargeback.
+                </p>
+            </section>
+
+            <!-- Technology & Production Process -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-3">Technology & Production Process</h2>
+                <p class="mb-4 leading-relaxed">
+                    ForeverTunes uses a combination of human creativity and advanced digital production tools to create
+                    personalized music experiences. These tools may include automated and intelligent music processing
+                    technologies that assist in improving efficiency, accuracy, and surround time while maintaining
+                    artistic quality.
+                </p>
+                <p class="mb-4 leading-relaxed">
+                    All final outputs are reviewed and refined by ForeverTunes before delivery. This process helps
+                    ensure consistency and quality while allowing for scalable service delivery.
+                </p>
+                <p class="leading-relaxed">
+                    The use of such technologies does not affect the originality, ownership, or licensing terms stated
+                    in this agreement.
+                </p>
+            </section>
+
+            <!-- Customer Responsibilities -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-3">Customer Responsibilities</h2>
+                <p class="mb-2 leading-relaxed">
+                    You agree to:
+                </p>
+                <ul class="list-disc pl-5 space-y-2 leading-relaxed">
+                    <li>Provide accurate and complete information during order submission.</li>
+                    <li>Ensure all uploaded materials (photos, voice notes, content) are owned by you or authorized for
+                        use.</li>
+                    <li>Review drafts within a reasonable time frame.</li>
+                    <li>Respond promptly to any clarification requests from our team.</li>
+                </ul>
+                <p class="mt-4 leading-relaxed">
+                    ForeverTunes is not responsible for errors caused by incorrect or incomplete information.
+                </p>
+            </section>
+
+            <!-- Intellectual Property -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-3">Intellectual Property</h2>
+                <p class="mb-4 leading-relaxed">
+                    All music, compositions, arrangements, and designs produced remain the intellectual property of
+                    ForeverTunes unless otherwise specified.
+                </p>
+                <p class="mb-4 leading-relaxed">
+                    Customers receive personal usage rights for their purchased audio.
+                </p>
+                <p class="mb-4 leading-relaxed">
+                    Commercial usage rights must be explicitly purchased or agreed upon separately.
+                </p>
+                <p class="leading-relaxed">
+                    You may not resell, redistribute, or claim ownership of the music without written permission.
+                </p>
+            </section>
+
+            <!-- Delivery & Access -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-3">Delivery & Access</h2>
+                <p class="mb-4 leading-relaxed">
+                    Final music files will be delivered via secure download link, email, or WhatsApp.
+                </p>
+                <p class="mb-4 leading-relaxed">
+                    Download links may be time-limited.
+                </p>
+                <p class="leading-relaxed">
+                    ForeverTunes is not responsible if the customer fails to download within the provided period.
+                </p>
+            </section>
+
+            <!-- Payment Terms -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-3">Payment Terms</h2>
+                <p class="mb-4 leading-relaxed">
+                    All payments must be made in full before production begins.
+                </p>
+                <p class="mb-4 leading-relaxed">
+                    We reserve the right to change pricing without prior notice.
+                </p>
+                <p class="leading-relaxed">
+                    Orders will only be processed after payment confirmation.
+                </p>
+            </section>
+
+            <!-- Service Limitations -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-3">Service Limitations</h2>
+                <ul class="list-disc pl-5 space-y-2 leading-relaxed">
+                    <li>ForeverTunes does not guarantee:</li>
+                    <li>Absolute satisfaction with subjective creative output</li>
+                    <li>Specific emotional impact or recipient reaction</li>
+                    <li>Exact resemblance to sample tracks</li>
+                </ul>
+                <p class="mt-4 leading-relaxed">
+                    Art is subjective, and all creations are crafted based on best professional judgment.
+                </p>
+            </section>
+
+            <!-- Suspension of Service -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-3">Suspension of Service</h2>
+                <p class="mb-2 leading-relaxed">
+                    We reserve the right to suspend or refuse service if:
+                </p>
+                <ul class="list-disc pl-5 space-y-2 leading-relaxed">
+                    <li>Misuse of platform is detected</li>
+                    <li>Fraudulent activity is suspected</li>
+                    <li>Customer behaves abusively toward our team</li>
+                </ul>
+            </section>
+
+            <!-- Modifications to Terms -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-3">Modifications to Terms</h2>
+                <p class="leading-relaxed">
+                    ForeverTunes reserves the right to modify these Terms & Conditions at any time. Updates will be
+                    published on the website and will take effect immediately.
+                </p>
+            </section>
+
+            <!-- Governing Law -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-3">Governing Law</h2>
+                <p class="leading-relaxed">
+                    These Terms shall be governed by and interpreted in accordance with the laws of India. Any disputes
+                    shall be subject to the jurisdiction of Aurangabad, Maharashtra.
+                </p>
+            </section>
+
+            <!-- Compliance & Payment Gateway Requirements -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-3">Compliance & Payment Gateway Requirements</h2>
+                <p class="mb-4 leading-relaxed">
+                    ForeverTunes operates as a digital creative service platform providing original, custom-made audio
+                    products. All transactions are completed for personalized creative services and are non-refundable
+                    in nature.
+                </p>
+                <p class="mb-4 leading-relaxed">
+                    We comply with standard digital commerce regulations and provide transparent service terms to meet
+                    payment gateway onboarding and verification requirements. All intellectual property and service
+                    usage policies are clearly defined within this document to ensure legitimate digital trade
+                    practices.
+                </p>
+            </section>
+
+            <!-- Contact Information -->
+            <section class="pt-6 border-t border-gray-200">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-3">Contact Information</h2>
+                <p class="mb-4 leading-relaxed">
+                    For any queries regarding these Terms & Conditions, contact:
+                </p>
+                <div class="space-y-1 text-lg font-medium">
+                    <p><strong>ForeverTunes</strong></p>
+                    <p>Email: <a href="mailto:forevertunes.in@gmail.com"
+                            class="text-indigo-600 hover:text-indigo-800">forevertunes.in@gmail.com</a></p>
+                    <p>WhatsApp: +91 96374 74698</p>
+                    <p>Location: Aurangabad, Maharashtra, India</p>
+                </div>
+            </section>
+
+        </div>
+        </main>
+
+        <!-- Footer -->
+  <footer class="bg-gray-50 border-t border-gray-200">
+            <div class="container mx-auto px-6 py-12">
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
+                    <div class="col-span-2 md:col-span-1">
+                        <div class="flex items-center space-x-2">
+                            <img src="logo.png" alt="Logo" class="h-8 w-8 object-contain rounded">
+                            <span class="text-xl font-bold">ForeverTunes</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="font-semibold text-black">Platform</h4>
+                        <ul class="mt-4 space-y-2 text-gray-600">
+                            <li><a href="#" class="nav-link hover:text-black" data-section="home">Home</a></li>
+                            <li><a href="work.html" class="nav-link hover:text-black" data-section="how-it-works">How It
+                                    Works</a></li>
+                            <li><a href="articles.html" class="nav-link hover:text-black" data-section="Blog">Blog</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-black">Support</h4>
+                        <ul class="mt-4 space-y-2 text-gray-600">
+                            <li><a href="contact.html" class="nav-link hover:text-black" data-section="contact">Contact
+                                    Us</a></li>
+                            <li><a href="contact.html" class="hover:text-black">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-black">Legal</h4>
+                        <ul class="mt-4 space-y-2 text-gray-600">
+                            <li><a href="privacy&policy.html" class="nav-link hover:text-black"
+                                    data-section="legal">Privacy policy</a></li>
+                            <li><a href="terms&condition.html" class="nav-link hover:text-black"
+                                    data-section="legal">Terms and conditions</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-black">Admim</h4>
+                        <ul class="mt-4 space-y-2 text-gray-600">
+                            <li><a href="adminpanel.html" class="nav-link hover:text-black"
+                                    data-section="legal">Login</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-12 pt-8 border-t border-gray-200 text-center text-gray-500 text-sm">
+                    <p>&copy; 2025 ForeverTunes</p>
+                </div>
+            </div>
+        </footer>
+        <script>
+            // Initialize Lucide Icons
+            lucide.createIcons();
+        </script>
+</body>
+
+</html>

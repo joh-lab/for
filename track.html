@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Your Order</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind to use Inter font -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary-dark': '#1e2022',
+                        'primary-accent': '#2563eb', /* Blue for active state if needed */
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Import Inter font from Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+        /* Custom styles for the progress tracker */
+        .progress-step {
+            position: relative;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            z-index: 10;
+        }
+
+        .progress-line {
+            position: absolute;
+            top: 20px;
+            /* Aligns with the center of the icon circle */
+            left: 50%;
+            right: -50%;
+            height: 2px;
+            background-color: #e5e7eb;
+            /* Gray line */
+            z-index: 5;
+        }
+
+        .progress-step:last-child .progress-line {
+            display: none;
+            /* Hide line after the last step */
+        }
+
+        /* Active line segment (for progress visualization) */
+        .active-line {
+            background-color: #10b981;
+            /* Green line */
+            width: 100%;
+        }
+
+        .icon-wrapper {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 min-h-screen font-sans flex items-center justify-center  ">
+
+    <div class="w-full mx-auto">
+        <header class="bg-white shadow-sm sticky top-0 z-50">
+            <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <div class="flex items-center space-x-2 cursor-pointer" onclick="showSection('home')">
+                    <img src="logo.png" alt="ForeverTunes Logo" class="h-8 w-8 object-contain">
+                    <span class="text-xl font-bold">ForeverTunes</span>
+                </div>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <!-- 'Demo' link removed as requested -->
+                    <a href="can.html" class="nav-link text-gray-600 hover:text-black transition-colors"
+                        data-section="home">Home</a>
+                    <a href="song.html" class="nav-link text-gray-600 hover:text-black transition-colors"
+                        data-section="home">Listen to our work</a>
+                    <a href="work.html" class="nav-link text-gray-600 hover:text-black transition-colors"
+                        data-section="how it works">How It Works</a>
+                    <a href="contact.html" class="nav-link text-gray-600 hover:text-black transition-colors"
+                        data-section="contact">Contact</a>
+                    <a href="acsess.html" class="nav-link text-gray-600 hover:text-black transition-colors"
+                        data-section="contact">Customer Login</a>
+                    <a href="track.html" class="nav-link text-gray-600 hover:text-black transition-colors"
+                        data-section="contact">Track your order </a>
+                    <a href="https://www.instagram.com/forevertunes.in?igsh=MWRscHhkYmhncGNqeg==" target="_blank"
+                        rel="noopener noreferrer" class="text-gray-600 hover:text-black transition-colors">
+                        <!-- Instagram Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163zm0 1.441c-3.141 0-3.504.012-4.726.068-2.673.123-3.974 1.441-4.098 4.098-.056 1.222-.067 1.583-.067 4.726s.011 3.504.067 4.726c.124 2.657 1.425 3.974 4.098 4.098 1.222.056 1.584.068 4.726.068s3.504-.012 4.726-.068c2.673-.124 3.974-1.441 4.098-4.098.056-1.222.068-1.584.068-4.726s-.012-3.504-.068-4.726c-.124-2.657-1.425-3.974-4.098-4.098C15.504 3.615 15.141 3.604 12 3.604zm0 4.232c-2.404 0-4.35 1.946-4.35 4.35s1.946 4.35 4.35 4.35 4.35-1.946 4.35-4.35-1.946-4.35-4.35-4.35zm0 7.26c-1.605 0-2.91-1.305-2.91-2.91s1.305-2.91 2.91-2.91 2.91 1.305 2.91 2.91-1.305 2.91-2.91 2.91zm4.45-7.81c-.552 0-1 .448-1 1s.448 1 1 1 1-.448 1-1-.448-1-1-1z" />
+                        </svg>
+                    </a>
+                </nav>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-600 hover:text-black focus:outline-none">
+                        <!-- Mobile Menu Icon -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
+                <!-- 'Demo' link removed as requested -->
+                <a href="#" class="block py-3 px-6 text-sm hover:bg-gray-50 nav-link" data-section="home">Home</a>
+                <a href="#" class="block py-3 px-6 text-sm hover:bg-gray-50 nav-link" data-section="how-it-works">How It
+                    Works</a>
+                <a href="#" class="block py-3 px-6 text-sm hover:bg-gray-50 nav-link" data-section="contact">Contact</a>
+                <a href="https://www.instagram.com/forevertunes.in?igsh=MWRscHhkYmhncGNqeg==" target="_blank"
+                    rel="noopener noreferrer" class="block py-3 px-6 text-sm hover:bg-gray-50">Instagram</a>
+            </div>
+        </header>
+
+        <!-- Header -->
+        <header class="text-center mb-10 pt-4">
+            <h2 class="text-4xl sm:text-5xl font-extrabold text-primary-dark mb-4">
+                Track Your Order
+            </h2>
+            <p class="text-lg text-gray-600">
+                Enter your Order ID to check the current status of your custom song.
+            </p>
+        </header>
+
+        <!-- Order Tracking Input -->
+        <div class="flex flex-col sm:flex-row gap-3 mb-10 max-w-md mx-auto">
+            <input type="text" placeholder="Order ID"
+                class="flex-grow p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-accent focus:border-primary-accent shadow-sm"
+                value="FT-458721" readonly>
+            <button
+                class="px-6 py-3 bg-primary-dark text-white font-medium rounded-xl hover:bg-gray-700 transition duration-300">
+                Track Order
+            </button>
+        </div>
+
+        <!-- Order Summary Card -->
+        <div class="bg-white shadow-lg rounded-xl p-6 border border-gray-100 mb-10 max-w-md mx-auto">
+            <h2 class="text-xl font-bold text-primary-dark mb-6">
+                Order Summary
+            </h2>
+
+            <div class="grid grid-cols-2 gap-y-3 text-base">
+
+                <!-- Item 1: Order ID -->
+                <span class="text-gray-500 font-medium">Order ID</span>
+                <span class="text-gray-800 font-semibold">FT-458721</span>
+
+                <!-- Item 2: Customer -->
+                <span class="text-gray-500 font-medium">Customer</span>
+                <span class="text-gray-800">John Doe</span>
+
+                <!-- Item 3: Package -->
+                <span class="text-gray-500 font-medium">Package</span>
+                <span class="text-gray-800">Basic</span>
+
+                <!-- Item 4: Occasion -->
+                <span class="text-gray-500 font-medium">Occasion</span>
+                <span class="text-gray-800">Birthday</span>
+
+                <!-- Item 5: Language -->
+                <span class="text-gray-500 font-medium">Language</span>
+                <span class="text-gray-800">English</span>
+
+                <!-- Item 6: Order Date -->
+                <span class="text-gray-500 font-medium">Order Date</span>
+                <span class="text-gray-800">April 18, 2024</span>
+
+                <!-- Item 7: Estimated Delivery -->
+                <span class="text-gray-500 font-medium">Estimated Delivery</span>
+                <span class="text-gray-800 font-semibold">April 22, 2024</span>
+            </div>
+        </div>
+
+        <!-- Progress Tracker -->
+        <div class="flex justify-between items-start relative mb-12 py-4 max-w-md mx-auto">
+            <!-- Line container (visible only on non-mobile) -->
+            <div class="hidden sm:block absolute top-[60px] left-0 right-0 h-0">
+                <div class="progress-line w-full"></div>
+            </div>
+
+            <!-- Steps Container -->
+            <div class="flex justify-between w-full relative z-10">
+
+                <!-- Step 1: Payment Confirmed (Active/Completed) -->
+                <div class="progress-step">
+                    <!-- Icon Wrapper -->
+                    <div class="icon-wrapper bg-green-500 text-white shadow-md">
+                        <!-- Checkmark Icon -->
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7">
+                            </path>
+                        </svg>
+                    </div>
+                    <span class="text-sm font-medium text-primary-dark">Payment Confirmed</span>
+                    <div class="progress-line active-line"></div>
+                </div>
+
+                <!-- Step 2: Song in Production (Current) -->
+                <div class="progress-step">
+                    <!-- Icon Wrapper (Mocking current state being highlighted) -->
+                    <div class="icon-wrapper bg-white border-2 border-primary-dark text-primary-dark shadow-md">
+                        <!-- Clock/Production Icon -->
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <span class="text-sm font-bold text-primary-dark mt-1">Song in Production</span>
+                    <div class="progress-line bg-gray-300"></div>
+                </div>
+
+                <!-- Step 3: Song Ready (Upcoming) -->
+                <div class="progress-step opacity-50">
+                    <!-- Icon Wrapper -->
+                    <div class="icon-wrapper bg-white border-2 border-gray-300 text-gray-400">
+                        <!-- Music Note Icon -->
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 19V6l12-3v13M9 19c0 1.105-1.79 2-4 2s-4-.895-4-2 1.79-2 4-2 4 .895 4 2zm12-3c0 1.105-1.79 2-4 2s-4-.895-4-2 1.79-2 4-2 4 .895 4 2zM9 10v6">
+                            </path>
+                        </svg>
+                    </div>
+                    <span class="text-sm font-medium text-gray-500">Song Ready</span>
+                </div>
+
+                <!-- Step 4: Delivered (Upcoming) -->
+                <div class="progress-step opacity-50">
+                    <!-- Icon Wrapper -->
+                    <div class="icon-wrapper bg-white border-2 border-gray-300 text-gray-400">
+                        <!-- Envelope/Mail Icon -->
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-2 4v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+                        </svg>
+                    </div>
+                    <span class="text-sm font-medium text-gray-500">Delivered</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="text-center">
+            <p class="text-gray-700 mb-2">Need help with your order?</p>
+            <a href="contact.html"
+                class="text-primary-dark font-medium text-lg hover:text-gray-600 transition duration-300">
+                Contact us
+            </a>
+        </div>
+        <div>
+            <footer class="bg-gray-50 border-t border-gray-200">
+                <div class="container mx-auto px-6 py-12">
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
+                        <div class="col-span-2 md:col-span-1">
+                            <div class="flex items-center space-x-2">
+                                <img src="logo.png" alt="Logo" class="h-8 w-8 object-contain rounded">
+                                <span class="text-xl font-bold">ForeverTunes</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="font-semibold text-black">Platform</h4>
+                            <ul class="mt-4 space-y-2 text-gray-600">
+                                <li><a href="#" class="nav-link hover:text-black" data-section="home">Home</a></li>
+                                <li><a href="work.html" class="nav-link hover:text-black"
+                                        data-section="how-it-works">How It
+                                        Works</a></li>
+                                <li><a href="articles.html" class="nav-link hover:text-black"
+                                        data-section="Blog">Blog</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-black">Support</h4>
+                            <ul class="mt-4 space-y-2 text-gray-600">
+                                <li><a href="contact.html" class="nav-link hover:text-black"
+                                        data-section="contact">Contact
+                                        Us</a></li>
+                                <li><a href="contact.html" class="hover:text-black">FAQ</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-black">Legal</h4>
+                            <ul class="mt-4 space-y-2 text-gray-600">
+                                <li><a href="privacy&policy.html" class="nav-link hover:text-black"
+                                        data-section="legal">Privacy policy</a></li>
+                                <li><a href="terms&condition.html" class="nav-link hover:text-black"
+                                        data-section="legal">Terms and conditions</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-black">Admim</h4>
+                            <ul class="mt-4 space-y-2 text-gray-600">
+                                <li><a href="adminpanel.html" class="nav-link hover:text-black"
+                                        data-section="legal">Login</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-12 pt-8 border-t border-gray-200 text-center text-gray-500 text-sm">
+                        <p>&copy; 2025 ForeverTunes</p>
+                    </div>
+                </div>
+            </footer>
+
+
+        </div>
+    </div>
+
+</body>
+
+</html>

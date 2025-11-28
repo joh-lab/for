@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Upload Song</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind to use Inter font and custom colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary-dark': '#1e2022',
+                        'sidebar-bg': '#ffffff',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Import Inter font from Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+        /* Custom style to ensure the main content respects the sidebar */
+        .main-content {
+            margin-left: 250px; /* Adjust based on sidebar width */
+            padding-top: 1rem;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 640px) {
+            .sidebar {
+                display: none; /* Hide sidebar on small screens for simplicity */
+            }
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans flex flex-col">
+
+    <!-- Top Navigation Bar (Header) -->
+    <header class="bg-white border-b border-gray-100 p-4 flex justify-between items-center sm:hidden">
+        <span class="text-xl font-extrabold text-primary-dark">Forever Tunes</span>
+        <!-- Menu Icon for mobile sidebar toggle (for realism, though the sidebar is just hidden) -->
+        <button class="text-gray-600 hover:text-primary-dark">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+    </header>
+
+    <!-- Main Flex Container -->
+    <div class="flex flex-grow">
+        <!-- Sidebar (Fixed) -->
+        <aside class="sidebar fixed top-0 left-0 h-full w-[250px] bg-sidebar-bg border-r border-gray-100 p-6 flex flex-col justify-between hidden sm:block">
+            <nav>
+                <h1 class="text-xl font-extrabold text-primary-dark mb-10 border-b pb-4">
+                    Forever Tunes
+                </h1>
+                <h2 class="text-lg font-bold text-primary-dark mb-4">Admin Panel</h2>
+                <ul>
+                    <li class="mb-4">
+                        <a href="#" class="text-gray-600 font-medium hover:text-primary-dark transition duration-150">
+                            Dashboard
+                        </a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="admin_orders_management.html" class="text-primary-dark font-bold">
+                            Orders
+                        </a>
+                    </li>
+                    <li class="mb-4">
+                        <a href="admin_settings.html" class="text-gray-600 font-medium hover:text-primary-dark transition duration-150">
+                            Settings
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- Social Icons/Footer could go here -->
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="flex-grow main-content p-4 sm:p-8">
+
+            <!-- Top Header Bar (Desktop Only - containing Home link and Socials) -->
+            <header class="hidden sm:flex justify-end items-center mb-8 border-b border-gray-100 pb-4">
+                <a href="#" class="text-sm text-gray-700 font-medium hover:text-primary-dark mr-6">Home</a>
+                <div class="flex space-x-3 text-gray-500">
+                    <!-- Instagram Icon -->
+                    <a href="#" class="hover:text-primary-dark transition duration-150">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-5a2 2 0 00-2-2h-3V7a2 2 0 00-2-2H9a2 2 0 00-2 2v10a2 2 0 002 2h3v3a2 2 0 002 2h5v-5z"></path></svg>
+                    </a>
+                    <!-- Twitter/X Icon (using a generic letter 'X') -->
+                    <a href="#" class="hover:text-primary-dark transition duration-150 text-sm font-bold pt-[2px]">X</a>
+                    <!-- Another generic icon (e.g., mail) -->
+                    <a href="#" class="hover:text-primary-dark transition duration-150">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-2 4v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path></svg>
+                    </a>
+                </div>
+                <span class="text-sm text-gray-500 ml-6">admin</span>
+            </header>
+
+
+            <!-- Main Content: Upload Area -->
+            <section>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-primary-dark mb-2">
+                    Upload Song
+                </h2>
+                <p class="text-lg text-gray-700 mb-8">
+                    Order ID: #1245
+                </p>
+
+                <!-- File Dropzone Card -->
+                <div id="dropzone" 
+                     class="bg-white shadow-lg rounded-xl border-2 border-dashed border-gray-300 p-12 text-center max-w-2xl mx-auto cursor-pointer hover:border-primary-dark transition duration-300">
+                    
+                    <!-- Upload Icon (Cloud) -->
+                    <svg class="w-16 h-16 mx-auto mb-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 014 4v2m-5-8a.5.5 0 01.5.5V14m-3-3l3 3m0 0l3-3"></path>
+                    </svg>
+
+                    <p class="text-lg text-gray-600 mb-6">
+                        Drag and drop a file here, or click to select
+                    </p>
+
+                    <!-- Hidden file input to trigger upload -->
+                    <input type="file" id="fileInput" class="hidden" accept="audio/*">
+
+                    <!-- Upload Button -->
+                    <button id="uploadButton" class="px-8 py-3 bg-primary-dark text-white font-medium text-lg rounded-xl shadow-lg hover:bg-gray-700 transition duration-300">
+                        Upload
+                    </button>
+                    
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const dropzone = document.getElementById('dropzone');
+        const fileInput = document.getElementById('fileInput');
+        const uploadButton = document.getElementById('uploadButton');
+
+        // Handle button click to open file dialog
+        uploadButton.addEventListener('click', () => {
+            fileInput.click();
+        });
+
+        // Handle dropzone click to open file dialog
+        dropzone.addEventListener('click', (e) => {
+            // Prevent opening dialog if the click was on the button itself
+            if (e.target.id !== 'uploadButton') {
+                fileInput.click();
+            }
+        });
+
+        // Display selected file name (basic interaction feedback)
+        fileInput.addEventListener('change', () => {
+            if (fileInput.files.length > 0) {
+                alert(`Selected file: ${fileInput.files[0].name}. Click Upload to process.`);
+            }
+        });
+        
+        // Handle Drag & Drop Events
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropzone.addEventListener(eventName, preventDefaults, false);
+            document.body.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropzone.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropzone.addEventListener(eventName, unhighlight, false);
+        });
+
+        function highlight() {
+            dropzone.classList.add('border-primary-dark', 'border-solid');
+            dropzone.classList.remove('border-dashed');
+        }
+
+        function unhighlight() {
+            dropzone.classList.remove('border-primary-dark', 'border-solid');
+            dropzone.classList.add('border-dashed');
+        }
+
+        dropzone.addEventListener('drop', handleDrop, false);
+
+        function handleDrop(e) {
+            let dt = e.dataTransfer;
+            let files = dt.files;
+            
+            if (files.length > 0) {
+                // Set files to the input element (for easier simulation)
+                fileInput.files = files;
+                alert(`Dropped file: ${files[0].name}. Click Upload to process.`);
+            }
+        }
+    </script>
+</body>
+</html>

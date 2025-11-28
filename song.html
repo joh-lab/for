@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ForeverTunes - Listen To Our Work</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFDFD;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #888;
+        }
+
+        /* Smooth transition for hover effects */
+        .song-card-art {
+            transition: transform 0.3s ease;
+        }
+
+        .song-card-art:hover {
+            transform: scale(1.02);
+        }
+
+        /* Visual state when a tile is playing */
+        .song-card-art.playing {
+            outline: 2px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) inset, 0 6px 18px rgba(0, 0, 0, 0.4);
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        .btn-icon {
+            transition: color 0.2s, transform 0.1s;
+        }
+
+        .btn-icon:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+
+<body class="text-slate-900 selection:bg-slate-200">
+
+    <!-- Navigation -->
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2 cursor-pointer" onclick="showSection('home')">
+                <img src="logo.png" alt="ForeverTunes Logo" class="h-8 w-8 object-contain">
+                <span class="text-xl font-bold">ForeverTunes</span>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8">
+                <!-- 'Demo' link removed as requested -->
+                <a href="can.html" class="nav-link text-gray-600 hover:text-black transition-colors"
+                    data-section="home">Home</a>
+                <a href="song.html" class="nav-link text-gray-600 hover:text-black transition-colors"
+                    data-section="home">Listen to our work</a>
+                <a href="work.html" class="nav-link text-gray-600 hover:text-black transition-colors"
+                    data-section="how it works">How It Works</a>
+                <a href="contact.html" class="nav-link text-gray-600 hover:text-black transition-colors"
+                    data-section="contact">Contact</a>
+                <a href="acsess.html" class="nav-link text-gray-600 hover:text-black transition-colors"
+                    data-section="contact">Customer Login</a>
+                <a href="track.html" class="nav-link text-gray-600 hover:text-black transition-colors"
+                    data-section="contact">Track your order </a>
+                <a href="https://www.instagram.com/forevertunes.in?igsh=MWRscHhkYmhncGNqeg==" target="_blank"
+                    rel="noopener noreferrer" class="text-gray-600 hover:text-black transition-colors">
+                    <!-- Instagram Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163zm0 1.441c-3.141 0-3.504.012-4.726.068-2.673.123-3.974 1.441-4.098 4.098-.056 1.222-.067 1.583-.067 4.726s.011 3.504.067 4.726c.124 2.657 1.425 3.974 4.098 4.098 1.222.056 1.584.068 4.726.068s3.504-.012 4.726-.068c2.673-.124 3.974-1.441 4.098-4.098.056-1.222.068-1.584.068-4.726s-.012-3.504-.068-4.726c-.124-2.657-1.425-3.974-4.098-4.098C15.504 3.615 15.141 3.604 12 3.604zm0 4.232c-2.404 0-4.35 1.946-4.35 4.35s1.946 4.35 4.35 4.35 4.35-1.946 4.35-4.35-1.946-4.35-4.35-4.35zm0 7.26c-1.605 0-2.91-1.305-2.91-2.91s1.305-2.91 2.91-2.91 2.91 1.305 2.91 2.91-1.305 2.91-2.91 2.91zm4.45-7.81c-.552 0-1 .448-1 1s.448 1 1 1 1-.448 1-1-.448-1-1-1z" />
+                    </svg>
+                </a>
+            </nav>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-600 hover:text-black focus:outline-none">
+                    <!-- Mobile Menu Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
+            <!-- 'Demo' link removed as requested -->
+            <a href="#" class="block py-3 px-6 text-sm hover:bg-gray-50 nav-link" data-section="home">Home</a>
+            <a href="#" class="block py-3 px-6 text-sm hover:bg-gray-50 nav-link" data-section="how-it-works">How It
+                Works</a>
+            <a href="#" class="block py-3 px-6 text-sm hover:bg-gray-50 nav-link" data-section="contact">Contact</a>
+            <a href="https://www.instagram.com/forevertunes.in?igsh=MWRscHhkYmhncGNqeg==" target="_blank"
+                rel="noopener noreferrer" class="block py-3 px-6 text-sm hover:bg-gray-50">Instagram</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="px-6 pb-24 max-w-7xl mx-auto">
+
+        <!-- Page Title -->
+        <div class="text-center py-10 mb-8">
+            <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
+                Listen To Our Work
+            </h1>
+        </div>
+
+        <!-- Grid Layout Container (Content injected via JS) -->
+        <div id="content-grid" class="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-12 md:gap-y-16">
+            <!-- Sections will be rendered here -->
+        </div>
+
+    </main>
+
+
+    <script src="assets/js/audio-manager.js"></script>
+    <script>
+        // --- Data Structure ---
+        const sections = [
+            {
+                id: 1,
+                title: "ENGLISH",
+                cards: [
+                    { id: 'c1-s1', genre: "Custom Song", language: "ENGLISH", color: "bg-[#0F172A]", textColor: "text-cyan-300", duration: "2:58", progress: 30, src: "english-s1.mp3" },
+                    { id: 'c1-s2', genre: "Custom Song", language: "ENGLISH", color: "bg-[#1E293B]", textColor: "text-emerald-300", duration: "3:21", progress: 10, src: "Forever Starts Tonight.mp3" }
+                ]
+            },
+
+            {
+                id: 2,
+                title: "HINDI",
+                cards: [
+                    { id: 'c2-s1', genre: "Custom Song", language: "HINDI", color: "bg-[#FF9F1C]", textColor: "text-black", duration: "3:40", progress: 45, src: "Saat Janmon Ka Saath.mp3" },
+                    { id: 'c2-s2', genre: "Custom Song", language: "HINDI", color: "bg-[#FCCD6A]", textColor: "text-black", duration: "3:21", progress: 60, src: "Mera Mulk Hindustan.mp3" }
+                ]
+            },
+
+            {
+                id: 3,
+                title: "MARATHI",
+                cards: [
+                    { id: 'c3-s1', genre: "Custom Song", language: "MARATHI", color: "bg-[#FFB200]", textColor: "text-black", duration: "3:48", progress: 20, src: "नव्या वाटा.mp3" },
+                    { id: 'c3-s2', genre: "Custom Song", language: "MARATHI", color: "bg-[#F59E0B]", textColor: "text-white", duration: "3:21", progress: 80, src: "गौरवचा वाढदिवस.mp3" }
+                ]
+            },
+
+            {
+                id: 4,
+                title: "GUJARATI",
+                cards: [
+                    { id: 'c4-s1', genre: "Custom Song", language: "GUJARATI", color: "bg-[#1D4ED8]", textColor: "text-white", duration: "3:48", progress: 10, src: "નવું સવેરું.mp3" },
+                    { id: 'c4-s2', genre: "Custom Song", language: "GUJARATI", color: "bg-[#3B82F6]", textColor: "text-white", duration: "3:01", progress: 50, src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" }
+                ]
+            },
+
+            {
+                id: 5,
+                title: "PANJABI",
+                cards: [
+                    { id: 'c5-s1', genre: "Custom Song", language: "PANJABI", color: "bg-[#EF4444]", textColor: "text-white", duration: "3:48", progress: 70, src: "ਨਵੀਂ ਰਾਹਾਂ.mp3" },
+                    { id: 'c5-s2', genre: "Custom Song", language: "PANJABI", color: "bg-[#10B981]", textColor: "text-black", duration: "3:21", progress: 30, src: "Tere Bina.mp3" }
+                ]
+            },
+
+            {
+                id: 6,
+                title: "TAMIL",
+                cards: [
+                    { id: 'c6-s1', genre: "Custom Song", language: "TAMIL", color: "bg-[#111111]", textColor: "text-amber-300", duration: "3:23", progress: 15, src: "Kanavil Unnai Thedi.mp3" },
+                    { id: 'c6-s2', genre: "Custom Song", language: "TAMIL", color: "bg-[#1F2937]", textColor: "text-yellow-200", duration: "3:01", progress: 90, src: "En Uyirin Thirai.mp3" }
+                ]
+            },
+
+            {
+                id: 7,
+                title: "TELUGU",
+                cards: [
+                    { id: 'c7-s1', genre: "Custom Song", language: "TELGU", color: "bg-[#6D28D9]", textColor: "text-white", duration: "3:23", progress: 15, src: "తొలి సంవత్సరం సంబరం.mp3" },
+                    { id: 'c7-s2', genre: "Custom Song", language: "TELGU", color: "bg-[#8B5CF6]", textColor: "text-white", duration: "3:01", progress: 90, src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3" }
+                ]
+            },
+
+            {
+                id: 8,
+                title: "KANNADA",
+                cards: [
+                    { id: 'c8-s1', genre: "Custom Song", language: "KANNADA", color: "bg-[#B91C1C]", textColor: "text-yellow-300", duration: "3:23", progress: 15, src: "kannada.mp3" },
+                    { id: 'c8-s2', genre: "Custom Song", language: "KANNADA", color: "bg-[#7F1D1D]", textColor: "text-yellow-200", duration: "3:01", progress: 90, src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3" }
+                ]
+            }
+        ];
+
+        // --- Icons (SVG Strings) ---
+        const icons = {
+            play: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>`,
+            pause: `<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="4" height="16"></rect><rect x="14" y="4" width="4" height="16"></rect></svg>`,
+            skipBack: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="19 20 9 12 19 4 19 20"></polygon><line x1="5" y1="19" x2="5" y2="5"></line></svg>`,
+            skipForward: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 4 15 12 5 20 5 4"></polygon><line x1="19" y1="5" x2="19" y2="19"></line></svg>`
+        };
+
+        // --- Render Functions ---
+
+        function renderSongBlock(card) {
+            const subTextColor = (card.textColor === 'text-black' || card.textColor.includes('amber'))
+                ? 'text-black'
+                : 'text-gray-200';
+
+            return `
+                <div class="flex flex-col w-full" id="card-${card.id}">
+                    <!-- Album Art -->
+                    <div class="${card.color} aspect-square rounded-lg flex flex-col items-center justify-center p-4 mb-4 shadow-sm song-card-art cursor-pointer">
+                        <span class="text-[10px] md:text-xs font-medium opacity-80 mb-1 tracking-wide ${subTextColor}">
+                            ${card.genre}
+                        </span>
+                        <h3 class="text-lg md:text-xl font-bold uppercase tracking-wider ${card.textColor}">
+                            ${card.language}
+                        </h3>
+                    </div>
+
+                    <!-- Controls -->
+                    <div class="px-1">
+                        <!-- Progress Bar -->
+                        <div class="flex items-center justify-between text-[10px] text-gray-400 font-mono mb-3">
+                                <span class="time-elapsed" id="elapsed-${card.id}">0:00</span>
+                                <div class="mx-2 h-1 bg-gray-800 rounded-full w-full relative group cursor-pointer progress-track" data-card="${card.id}">
+                                    <div class="absolute left-0 top-0 h-full bg-gray-400 rounded-full progress-fill" id="fill-${card.id}" style="width: ${card.progress}%"></div>
+                                    <div class="absolute top-1/2 -translate-y-1/2 w-2 h-2 bg-gray-200 rounded-full shadow opacity-100 transition-transform group-hover:scale-125 progress-thumb" id="thumb-${card.id}" style="left: ${card.progress}%"></div>
+                                </div>
+                                <span class="time-duration" id="duration-${card.id}">${card.duration}</span>
+                            </div>
+
+                        <!-- Buttons -->
+                        <div class="flex items-center justify-between px-2 text-white">
+                            <button class="btn-icon skip-back hover:text-gray-300 transition" data-action="back">
+                                ${icons.skipBack}
+                            </button>
+                            
+                            <button 
+                                class="btn-icon hover:text-gray-300 transition play-btn" 
+                                data-id="${card.id}"
+                                aria-label="Play ${card.language}"
+                            >
+                                ${icons.play}
+                            </button>
+                            
+                            <button class="btn-icon skip-forward hover:text-gray-300 transition" data-action="forward">
+                                ${icons.skipForward}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- audio element for card playback -->
+                <audio id="audio-${card.id}" src="${card.src || ''}" preload="metadata"></audio>
+            `;
+        }
+
+        function renderSection(section) {
+            const titleHtml = section.title
+                ? `<h2 class="text-xl font-bold text-slate-800 mb-4 h-8 uppercase tracking-wide flex items-center">${section.title}</h2>`
+                : `<h2 class="mb-4 h-8" aria-hidden="true">&nbsp;</h2>`;
+
+            const cardsHtml = section.cards.map(card => renderSongBlock(card)).join('');
+
+            return `
+                <div class="flex flex-col">
+                    ${titleHtml}
+                    <div class="bg-[#0a0a0a] rounded-3xl p-5 md:p-6 shadow-xl border border-gray-800">
+                        <div class="grid grid-cols-2 gap-4 md:gap-6">
+                            ${cardsHtml}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // --- Initialization ---
+        function init() {
+            const gridContainer = document.getElementById('content-grid');
+            let fullHtml = '';
+
+            sections.forEach(section => {
+                fullHtml += renderSection(section);
+            });
+
+            gridContainer.innerHTML = fullHtml;
+        }
+
+        // --- Helpers ---
+        function formatTime(seconds) {
+            if (!seconds || isNaN(seconds)) return '0:00';
+            const m = Math.floor(seconds / 60);
+            const s = Math.floor(seconds % 60);
+            return `${m}:${s < 10 ? '0' : ''}${s}`;
+        }
+
+        // --- Logic: Toggle Play/Pause (connect to real <audio> element)
+        function togglePlay(cardId) {
+            const audio = document.getElementById('audio-' + cardId);
+            if (!audio) return;
+            if (audio.paused) audio.play(); else audio.pause();
+        }
+
+        // Initialize audio UI interactions for each rendered card
+        function initAudioPlayers() {
+            // attach listeners to all audio elements present in the page
+            document.querySelectorAll('audio[id^="audio-"]').forEach(audio => {
+                const id = audio.id.replace('audio-', '');
+                const playBtn = document.querySelector(`button[data-id="${id}"]`);
+                const fill = document.getElementById('fill-' + id);
+                const thumb = document.getElementById('thumb-' + id);
+                const elapsed = document.getElementById('elapsed-' + id);
+                const durationEl = document.getElementById('duration-' + id);
+
+                // loaded metadata -> set duration text
+                audio.addEventListener('loadedmetadata', () => {
+                    if (durationEl) durationEl.textContent = formatTime(audio.duration);
+                });
+
+                // Clicking on album art toggles playback as well
+                const album = document.querySelector(`#card-${id} .song-card-art`);
+                if (album) {
+                    album.addEventListener('click', () => {
+                        if (audio.paused) audio.play(); else audio.pause();
+                    });
+                }
+
+                // update UI on timeupdate
+                audio.addEventListener('timeupdate', () => {
+                    const pct = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+                    if (fill) fill.style.width = pct + '%';
+                    if (thumb) thumb.style.left = pct + '%';
+                    if (elapsed) elapsed.textContent = formatTime(audio.currentTime);
+                });
+
+                // update play/pause icon when audio plays
+                audio.addEventListener('play', () => {
+                    // pause others (AudioManager will pause them) but make sure UI toggles
+                    document.querySelectorAll('button.play-btn').forEach(b => { if (b !== playBtn) b.innerHTML = icons.play; });
+                    if (playBtn) playBtn.innerHTML = icons.pause;
+                    // mark album art playing
+                    const album = document.querySelector(`#card-${id} .song-card-art`);
+                    document.querySelectorAll('.song-card-art.playing').forEach(a => a.classList.remove('playing'));
+                    if (album) album.classList.add('playing');
+                });
+
+                // attach skip buttons inside card (if present)
+                const card = document.getElementById('card-' + id);
+                if (card) {
+                    const backBtn = card.querySelector('.skip-back');
+                    const forwardBtn = card.querySelector('.skip-forward');
+                    if (backBtn) backBtn.addEventListener('click', () => { audio.currentTime = Math.max(0, audio.currentTime - 10); });
+                    if (forwardBtn) forwardBtn.addEventListener('click', () => { audio.currentTime = Math.min(audio.duration || audio.currentTime, audio.currentTime + 10); });
+                }
+
+                audio.addEventListener('pause', () => {
+                    if (playBtn) playBtn.innerHTML = icons.play;
+                    const album = document.querySelector(`#card-${id} .song-card-art`);
+                    if (album) album.classList.remove('playing');
+                });
+
+                audio.addEventListener('ended', () => {
+                    if (playBtn) playBtn.innerHTML = icons.play;
+                    if (fill) fill.style.width = '0%';
+                    if (thumb) thumb.style.left = '0%';
+                    if (elapsed) elapsed.textContent = '0:00';
+                });
+            });
+
+            // Click-to-seek on progress tracks (delegation) + drag support
+            document.querySelectorAll('.progress-track').forEach(track => {
+                track.addEventListener('click', (e) => {
+                    const cardId = track.getAttribute('data-card');
+                    const audio = document.getElementById('audio-' + cardId);
+                    if (!audio || !audio.duration) return;
+                    const rect = track.getBoundingClientRect();
+                    const pct = Math.min(Math.max(0, (e.clientX - rect.left) / rect.width), 1);
+                    audio.currentTime = pct * audio.duration;
+                });
+                // drag to seek
+                let dragging = false;
+                track.addEventListener('pointerdown', (e) => {
+                    dragging = true;
+                    track.setPointerCapture(e.pointerId);
+                    const id = track.getAttribute('data-card');
+                    const audio = document.getElementById('audio-' + id);
+                    if (!audio || !audio.duration) return;
+                    const rect = track.getBoundingClientRect();
+                    const pct = Math.min(Math.max(0, (e.clientX - rect.left) / rect.width), 1);
+                    audio.currentTime = pct * audio.duration;
+                });
+                track.addEventListener('pointermove', (e) => {
+                    if (!dragging) return;
+                    const id = track.getAttribute('data-card');
+                    const audio = document.getElementById('audio-' + id);
+                    if (!audio || !audio.duration) return;
+                    const rect = track.getBoundingClientRect();
+                    const pct = Math.min(Math.max(0, (e.clientX - rect.left) / rect.width), 1);
+                    audio.currentTime = pct * audio.duration;
+                });
+                track.addEventListener('pointerup', (e) => {
+                    dragging = false;
+                });
+            });
+
+            // Ensure play buttons trigger audio toggle (some still use inline onclick)
+            document.querySelectorAll('button.play-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const cardId = btn.getAttribute('data-id');
+                    const audio = document.getElementById('audio-' + cardId);
+                    if (!audio) return;
+                    if (audio.paused) audio.play(); else audio.pause();
+                });
+            });
+
+            // Keep buttons in sync if AudioManager pauses other audios
+            document.addEventListener('play', (e) => {
+                const aud = e.target;
+                if (aud && aud.tagName === 'AUDIO') {
+                    document.querySelectorAll('button.play-btn').forEach(b => b.innerHTML = icons.play);
+                    const id = aud.id && aud.id.replace('audio-', '');
+                    const btn = id ? document.querySelector(`button[data-id="${id}"]`) : null;
+                    if (btn) btn.innerHTML = icons.pause;
+                }
+            }, true);
+
+            document.addEventListener('pause', (e) => {
+                const aud = e.target;
+                if (aud && aud.tagName === 'AUDIO') {
+                    const id = aud.id && aud.id.replace('audio-', '');
+                    const btn = id ? document.querySelector(`button[data-id="${id}"]`) : null;
+                    if (btn) btn.innerHTML = icons.play;
+                }
+            }, true);
+        }
+
+        // Run when DOM is ready
+        document.addEventListener('DOMContentLoaded', () => { init(); initAudioPlayers(); });
+
+    </script>
+     <footer class="bg-gray-50 border-t border-gray-200">
+                <div class="container mx-auto px-6 py-12">
+                    <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
+                        <div class="col-span-2 md:col-span-1">
+                            <div class="flex items-center space-x-2">
+                                <img src="logo.png" alt="Logo" class="h-8 w-8 object-contain rounded">
+                                <span class="text-xl font-bold">ForeverTunes</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <h4 class="font-semibold text-black">Platform</h4>
+                            <ul class="mt-4 space-y-2 text-gray-600">
+                                <li><a href="can.html" class="nav-link hover:text-black" data-section="home">Home</a></li>
+                                <li><a href="work.html" class="nav-link hover:text-black"
+                                        data-section="how-it-works">How It
+                                        Works</a></li>
+                                <li><a href="articles.html" class="nav-link hover:text-black"
+                                        data-section="Blog">Blog</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-black">Support</h4>
+                            <ul class="mt-4 space-y-2 text-gray-600">
+                                <li><a href="contact.html" class="nav-link hover:text-black"
+                                        data-section="contact">Contact
+                                        Us</a></li>
+                                <li><a href="contact.html" class="hover:text-black">FAQ</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-black">Legal</h4>
+                            <ul class="mt-4 space-y-2 text-gray-600">
+                                <li><a href="privacy&policy.html" class="nav-link hover:text-black"
+                                        data-section="legal">Privacy policy</a></li>
+                                <li><a href="terms&condition.html" class="nav-link hover:text-black"
+                                        data-section="legal">Terms and conditions</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-black">Admim</h4>
+                            <ul class="mt-4 space-y-2 text-gray-600">
+                                <li><a href="adminpanel.html" class="nav-link hover:text-black"
+                                        data-section="legal">Login</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="mt-12 pt-8 border-t border-gray-200 text-center text-gray-500 text-sm">
+                        <p>&copy; 2025 ForeverTunes</p>
+                    </div>
+                </div>
+            </footer>
+</body>
+
+</html>

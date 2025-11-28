@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Settings</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind to use Inter font and custom colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary-dark': '#1e2022',
+                        'sidebar-bg': '#ffffff',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Import Inter font from Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+        /* Custom style to ensure the main content respects the sidebar */
+        .main-content {
+            margin-left: 250px; /* Adjust based on sidebar width */
+            padding-top: 1rem;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 640px) {
+            .sidebar {
+                display: none; /* Hide sidebar on small screens for simplicity */
+            }
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans flex">
+
+    <!-- Sidebar (Fixed) -->
+    <aside class="sidebar fixed top-0 left-0 h-full w-[250px] bg-sidebar-bg border-r border-gray-100 p-6 flex flex-col justify-between hidden sm:block">
+        <nav>
+            <h1 class="text-xl font-extrabold text-primary-dark mb-10 border-b pb-4">
+                Admin Panel
+            </h1>
+            <ul>
+                <li class="mb-4">
+                    <a href="#" class="text-gray-600 font-medium hover:text-primary-dark transition duration-150">
+                        Dashboard
+                    </a>
+                </li>
+                <li class="mb-4">
+                    <a href="admin_orders_management.html" class="text-gray-600 font-medium hover:text-primary-dark transition duration-150">
+                        Orders
+                    </a>
+                </li>
+                <li class="mb-4">
+                    <a href="#" class="text-primary-dark font-bold">
+                        Settings
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- Admin text at the bottom right (as seen in the image header) -->
+        <div class="text-sm text-gray-500 hidden">admin</div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow main-content p-4 sm:p-8">
+
+        <!-- Header for Main Content -->
+        <header class="flex justify-between items-center mb-10">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-primary-dark">
+                Settings
+            </h2>
+            <span class="text-sm text-gray-500 hidden sm:block">admin</span>
+        </header>
+
+        <div class="max-w-xl">
+            
+            <!-- Section 1: Edit Package Prices -->
+            <section class="mb-10">
+                <h3 class="text-xl font-semibold text-primary-dark mb-4">
+                    Edit Package Prices
+                </h3>
+                <button class="px-5 py-2 bg-white text-primary-dark font-medium rounded-lg border border-gray-300 shadow-sm hover:bg-gray-100 transition duration-300">
+                    Modify Package Pricing
+                </button>
+            </section>
+
+            <!-- Section 2: Add Discounts -->
+            <section class="mb-10">
+                <h3 class="text-xl font-semibold text-primary-dark mb-4">
+                    Add Discounts
+                </h3>
+                <button class="px-5 py-2 bg-white text-primary-dark font-medium rounded-lg border border-gray-300 shadow-sm hover:bg-gray-100 transition duration-300">
+                    Create Discount
+                </button>
+            </section>
+
+            <!-- Section 3: Edit Add-on Prices -->
+            <section class="mb-10">
+                <h3 class="text-xl font-semibold text-primary-dark mb-4">
+                    Edit Add-on Prices
+                </h3>
+                <button class="px-5 py-2 bg-white text-primary-dark font-medium rounded-lg border border-gray-300 shadow-sm hover:bg-gray-100 transition duration-300">
+                    Modify Add-on Pricing
+                </button>
+            </section>
+
+            <!-- Section 4: Update Admin Password -->
+            <section class="mb-10">
+                <h3 class="text-xl font-semibold text-primary-dark mb-4">
+                    Update Admin Password
+                </h3>
+                <button class="px-5 py-2 bg-white text-primary-dark font-medium rounded-lg border border-gray-300 shadow-sm hover:bg-gray-100 transition duration-300">
+                    Change Password
+                </button>
+            </section>
+            
+        </div>
+        
+    </main>
+
+</body>
+</html>
