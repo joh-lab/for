@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Orders Management</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind to use Inter font and custom colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary-dark': '#1e2022',
+                        'sidebar-bg': '#ffffff',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Import Inter font from Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+        /* Custom style to ensure the main content respects the sidebar */
+        .main-content {
+            margin-left: 250px; /* Adjust based on sidebar width */
+            padding-top: 1rem;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 640px) {
+            .sidebar {
+                display: none; /* Hide sidebar on small screens for simplicity */
+            }
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans flex">
+
+    <!-- Sidebar (Fixed) -->
+    <aside class="sidebar fixed top-0 left-0 h-full w-[250px] bg-sidebar-bg border-r border-gray-100 p-6 flex flex-col justify-between hidden sm:block">
+        <nav>
+            <h1 class="text-xl font-extrabold text-primary-dark mb-10 border-b pb-4">
+                Admin Panel
+            </h1>
+            <ul>
+                <li class="mb-4">
+                    <a href="dash1.html" class="text-gray-600 font-medium hover:text-primary-dark transition duration-150">
+                        Dashboard
+                    </a>
+                </li>
+                <li class="mb-4">
+                    <a href="dash1.html" class="text-primary-dark font-bold">
+                        Orders
+                    </a>
+                </li>
+                <li class="mb-4">
+                    <a href="settings.html" class="text-gray-600 font-medium hover:text-primary-dark transition duration-150">
+                        Settings
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <!-- Admin text at the bottom right (as seen in the image header) -->
+        <div class="text-sm text-gray-500 hidden">admin</div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow main-content p-4 sm:p-8">
+
+        <!-- Header for Main Content -->
+        <header class="flex justify-between items-center mb-8">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-primary-dark">
+                Orders Management
+            </h2>
+            <span class="text-sm text-gray-500 hidden sm:block">admin</span>
+        </header>
+
+        <!-- Filter Tabs -->
+        <div class="flex space-x-2 bg-white p-1 rounded-xl shadow-sm border border-gray-100 w-fit mb-8">
+            <button class="px-4 py-2 text-sm font-semibold text-primary-dark bg-gray-100 rounded-lg">
+                All
+            </button>
+            <button class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-primary-dark transition duration-150">
+                Pending
+            </button>
+            <button class="px-4 py-2 text-sm font-medium text-gray-600 hover:text-primary-dark transition duration-150">
+                Delivered
+            </button>
+        </div>
+
+        <!-- Orders Table/List -->
+        <div class="bg-white shadow-xl rounded-xl border border-gray-100 overflow-hidden">
+            
+            <!-- Table Header -->
+            <div class="grid grid-cols-12 gap-4 text-sm font-medium text-gray-500 p-4 border-b border-gray-200">
+                <div class="col-span-3">Order ID</div>
+                <div class="col-span-4">Customer</div>
+                <div class="col-span-3">Status</div>
+                <div class="col-span-2 text-right"></div>
+            </div>
+
+            <!-- Order Rows -->
+            <!-- Row 1: Pending -->
+            <div class="grid grid-cols-12 gap-4 items-center p-4 border-b border-gray-100 hover:bg-gray-50 transition duration-150">
+                <div class="col-span-3 text-gray-900 font-medium">12345</div>
+                <div class="col-span-4 text-gray-700">Anjali Patel</div>
+                <div class="col-span-3">
+                    <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-xs font-medium">
+                        Pending
+                    </span>
+                </div>
+                <div class="col-span-2 text-right">
+                    <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-700">View Details</a>
+                </div>
+            </div>
+
+            <!-- Row 2: Pending -->
+            <div class="grid grid-cols-12 gap-4 items-center p-4 border-b border-gray-100 hover:bg-gray-50 transition duration-150">
+                <div class="col-span-3 text-gray-900 font-medium">12344</div>
+                <div class="col-span-4 text-gray-700">Rohan Sharma</div>
+                <div class="col-span-3">
+                    <span class="bg-red-100 text-red-600 px-3 py-1 rounded-full text-xs font-medium">
+                        Pending
+                    </span>
+                </div>
+                <div class="col-span-2 text-right">
+                    <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-700">View Details</a>
+                </div>
+            </div>
+
+            <!-- Row 3: In Progress -->
+            <div class="grid grid-cols-12 gap-4 items-center p-4 border-b border-gray-100 hover:bg-gray-50 transition duration-150">
+                <div class="col-span-3 text-gray-900 font-medium">12343</div>
+                <div class="col-span-4 text-gray-700">Sneha Kapoor</div>
+                <div class="col-span-3">
+                    <span class="bg-yellow-100 text-yellow-600 px-3 py-1 rounded-full text-xs font-medium">
+                        In Progress
+                    </span>
+                </div>
+                <div class="col-span-2 text-right">
+                    <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-700">View Details</a>
+                </div>
+            </div>
+
+            <!-- Row 4: Delivered -->
+            <div class="grid grid-cols-12 gap-4 items-center p-4 hover:bg-gray-50 transition duration-150">
+                <div class="col-span-3 text-gray-900 font-medium">12342</div>
+                <div class="col-span-4 text-gray-700">Michael Lee</div>
+                <div class="col-span-3">
+                    <span class="bg-primary-dark text-white px-3 py-1 rounded-full text-xs font-medium">
+                        Delivered
+                    </span>
+                </div>
+                <div class="col-span-2 text-right">
+                    <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-700">View Details</a>
+                </div>
+            </div>
+            
+        </div>
+        
+    </main>
+
+</body>
+</html>
