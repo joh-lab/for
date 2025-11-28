@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forever Tunes - Admin Panel</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        .animate-fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* Scrollbar styling */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+  <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2 cursor-pointer" onclick="showSection('home')">
+                <img src="logo.png" alt="ForeverTunes Logo" class="h-8 w-8 object-contain">
+                <span class="text-xl font-bold">ForeverTunes</span>
+            </div>
+            <nav class="hidden md:flex items-center space-x-8">
+                <!-- 'Demo' link removed as requested -->
+                <a href="can.html" class="nav-link text-gray-600 hover:text-black transition-colors"
+                    data-section="home">Home</a>
+                <a href="song.html" class="nav-link text-gray-600 hover:text-black transition-colors"
+                    data-section="home">Listen to our work</a>
+                <a href="work.html" class="nav-link text-gray-600 hover:text-black transition-colors"
+                    data-section="how it works">How It Works</a>
+                <a href="contact.html" class="nav-link text-gray-600 hover:text-black transition-colors"
+                    data-section="contact">Contact</a>
+                <a href="acsess.html" class="nav-link text-gray-600 hover:text-black transition-colors"
+                    data-section="contact">Customer Login</a>
+                <a href="track.html" class="nav-link text-gray-600 hover:text-black transition-colors"
+                    data-section="contact">Track your order </a>
+                <a href="https://www.instagram.com/forevertunes.in?igsh=MWRscHhkYmhncGNqeg==" target="_blank"
+                    rel="noopener noreferrer" class="text-gray-600 hover:text-black transition-colors">
+                    <!-- Instagram Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919C8.416 2.175 8.796 2.163 12 2.163zm0 1.441c-3.141 0-3.504.012-4.726.068-2.673.123-3.974 1.441-4.098 4.098-.056 1.222-.067 1.583-.067 4.726s.011 3.504.067 4.726c.124 2.657 1.425 3.974 4.098 4.098 1.222.056 1.584.068 4.726.068s3.504-.012 4.726-.068c2.673-.124 3.974-1.441 4.098-4.098.056-1.222.068-1.584.068-4.726s-.012-3.504-.068-4.726c-.124-2.657-1.425-3.974-4.098-4.098C15.504 3.615 15.141 3.604 12 3.604zm0 4.232c-2.404 0-4.35 1.946-4.35 4.35s1.946 4.35 4.35 4.35 4.35-1.946 4.35-4.35-1.946-4.35-4.35-4.35zm0 7.26c-1.605 0-2.91-1.305-2.91-2.91s1.305-2.91 2.91-2.91 2.91 1.305 2.91 2.91-1.305 2.91-2.91 2.91zm4.45-7.81c-.552 0-1 .448-1 1s.448 1 1 1 1-.448 1-1-.448-1-1-1z" />
+                    </svg>
+                </a>
+            </nav>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-600 hover:text-black focus:outline-none">
+                    <!-- Mobile Menu Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
+            <!-- 'Demo' link removed as requested -->
+            <a href="#" class="block py-3 px-6 text-sm hover:bg-gray-50 nav-link" data-section="home">Home</a>
+            <a href="#" class="block py-3 px-6 text-sm hover:bg-gray-50 nav-link" data-section="how-it-works">How It
+                Works</a>
+            <a href="#" class="block py-3 px-6 text-sm hover:bg-gray-50 nav-link" data-section="contact">Contact</a>
+            <a href="https://www.instagram.com/forevertunes.in?igsh=MWRscHhkYmhncGNqeg==" target="_blank"
+                rel="noopener noreferrer" class="block py-3 px-6 text-sm hover:bg-gray-50">Instagram</a>
+        </div>
+    </header>
+    <div id="app"></div>
+
+    <script>
+        // --- Mock Data ---
+        const MOCK_ORDERS = [
+            { id: '1205', customer: 'Sangeeta R.', email: 'sangeeta@example.com', package: 'Delivered', status: 'Delivered', amount: '₹1,500', date: '2025-11-20', description: 'Upbeat Bollywood remix, high tempo.' },
+            { id: '1204', customer: 'Vinay P.', email: 'vinay@example.com', package: 'Premium', status: 'Pending', amount: '₹2,500', date: '2025-11-21', description: 'Acoustic cover with soft piano backing.' },
+            { id: '1203', customer: 'David L.', email: 'david@example.com', package: 'Exclusive', status: 'In Progress', amount: '₹5,000', date: '2025-11-22', description: 'Original composition for short film.' },
+            { id: '12345', customer: 'Anjali Patel', email: 'anjali@example.com', package: 'Basic', status: 'Pending', amount: '₹1,000', date: '2025-11-22', description: 'Sample Song Production, clean vocals.' },
+            { id: '12344', customer: 'Rohan Sharma', email: 'rohan@example.com', package: 'Premium', status: 'In Progress', amount: '₹2,500', date: '2025-11-23', description: 'Rock ballad, heavy drums.' },
+            { id: '12342', customer: 'Michael Lee', email: 'michael@example.com', package: 'Basic', status: 'Delivered', amount: '₹1,000', date: '2025-11-19', description: 'Lo-fi beats for study playlist.' },
+        ];
+
+        const STATS = [
+            { title: 'Total Orders', value: '128', icon: 'music', color: 'bg-blue-500' },
+            { title: 'Pending Songs', value: '7', icon: 'clock', color: 'bg-yellow-500' },
+            { title: 'Completed Orders', value: '65', icon: 'check-circle', color: 'bg-green-500' },
+            { title: 'Revenue (Today)', value: '₹4,500', icon: 'trending-up', color: 'bg-purple-500' },
+        ];
+
+        // --- State Management ---
+        const state = {
+            isAuthenticated: false,
+            currentView: 'dashboard',
+            selectedOrder: null,
+            isSidebarOpen: window.innerWidth >= 768,
+            filter: 'All'
+        };
+
+        // --- Helper Functions ---
+        function getBadgeStyles(status) {
+            const styles = {
+                'Delivered': 'bg-green-100 text-green-800 border-green-200',
+                'Pending': 'bg-yellow-100 text-yellow-800 border-yellow-200',
+                'In Progress': 'bg-blue-100 text-blue-800 border-blue-200',
+            };
+            return styles[status] || 'bg-gray-100 text-gray-800';
+        }
+
+        // --- Actions ---
+        window.handleLogin = () => {
+            state.isAuthenticated = true;
+            render();
+        };
+
+        window.handleLogout = () => {
+            state.isAuthenticated = false;
+            state.currentView = 'dashboard';
+            render();
+        };
+
+        window.navigateTo = (view, orderId = null) => {
+            state.currentView = view;
+            if (orderId) {
+                state.selectedOrder = MOCK_ORDERS.find(o => o.id === orderId);
+            }
+            if (window.innerWidth < 768) state.isSidebarOpen = false;
+            render();
+        };
+
+        window.toggleSidebar = () => {
+            state.isSidebarOpen = !state.isSidebarOpen;
+            render();
+        };
+
+        window.setFilter = (filter) => {
+            state.filter = filter;
+            render();
+        };
+
+        // --- Component Renderers (Returns HTML Strings) ---
+
+        const renderLogin = () => `
+            <div class="min-h-screen bg-gray-50 flex items-center justify-center p-4">
+                <div class="max-w-md w-full">
+                    <div class="text-center mb-8">
+    <img src="logo.png" alt="ForeverTunes Logo" class="h-12 w-12 mx-auto mb-3 object-contain">
+    <h1 class="text-4xl font-bold text-black-900 mb-1">ForeverTunes</h1>
+    <p class="text-gray-500">Admin Panel Access</p>
+</div>
+
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-6">Login to your account</h2>
+                        <form onsubmit="event.preventDefault(); window.handleLogin();" class="space-y-6">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                                <input type="email" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none transition-all" value="admin@forevertunes.com">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                                <input type="password" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none transition-all" value="password">
+                            </div>
+<button type="submit" 
+    class="w-full flex items-center justify-center px-4 py-3 rounded-lg bg-black hover:bg-gray-800 text-white font-medium transition-all">
+    Log in
+</button>
+                        </form>
+                        <p class="text-center mt-8 text-gray-400 text-sm">© 2025 Forever Tunes</p>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        const renderDashboard = () => `
+            <div class="space-y-6 animate-fade-in">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-2xl font-bold text-gray-800">Overview</h2>
+                    <div class="text-sm text-gray-500">Last updated: Just now</div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    ${STATS.map(stat => `
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 flex items-start justify-between hover:shadow-md transition-shadow">
+                            <div>
+                                <p class="text-sm font-medium text-gray-500 mb-1">${stat.title}</p>
+                                <h3 class="text-2xl font-bold text-gray-900">${stat.value}</h3>
+                            </div>
+                            <div class="p-3 rounded-lg ${stat.color} bg-opacity-10">
+                                <i data-lucide="${stat.icon}" class="w-6 h-6 ${stat.color.replace('bg-', 'text-')}"></i>
+                            </div>
+                        </div>
+                    `).join('')}
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <button onclick="window.navigateTo('orders')" class="group p-6 bg-blue-600 rounded-xl text-white shadow-lg shadow-blue-200 hover:shadow-xl hover:bg-blue-700 transition-all flex items-center justify-between text-left">
+                        <div>
+                            <p class="font-semibold text-lg">View New Orders</p>
+                            <p class="text-blue-200 text-sm">Check pending requests</p>
+                        </div>
+                        <i data-lucide="chevron-right" class="w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:translate-x-1"></i>
+                    </button>
+                    <button onclick="window.navigateTo('upload')" class="group p-6 bg-purple-600 rounded-xl text-white shadow-lg shadow-purple-200 hover:shadow-xl hover:bg-purple-700 transition-all flex items-center justify-between text-left">
+                        <div>
+                            <p class="font-semibold text-lg">Upload Song</p>
+                            <p class="text-purple-200 text-sm">Deliver completed work</p>
+                        </div>
+                        <i data-lucide="upload" class="w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity transform group-hover:-translate-y-1"></i>
+                    </button>
+                    <button class="group p-6 bg-teal-600 rounded-xl text-white shadow-lg shadow-teal-200 hover:shadow-xl hover:bg-teal-700 transition-all flex items-center justify-between text-left">
+                        <div>
+                            <p class="font-semibold text-lg">Contact Customer</p>
+                            <p class="text-teal-200 text-sm">Send messages</p>
+                        </div>
+                        <i data-lucide="user" class="w-6 h-6 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="p-6 border-b border-gray-100 flex justify-between items-center">
+                        <h3 class="text-lg font-bold text-gray-900">Recent Orders</h3>
+                        <button onclick="window.navigateTo('orders')" class="px-3 py-1 bg-white border border-gray-300 text-gray-700 rounded-lg text-sm hover:bg-gray-50">View All</button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead class="bg-gray-50 text-gray-500 text-xs uppercase font-semibold">
+                                <tr>
+                                    <th class="px-6 py-4">Order ID</th>
+                                    <th class="px-6 py-4">Customer</th>
+                                    <th class="px-6 py-4">Package</th>
+                                    <th class="px-6 py-4">Status</th>
+                                    <th class="px-6 py-4 text-right">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100">
+                                ${MOCK_ORDERS.slice(0, 4).map(order => `
+                                    <tr class="hover:bg-gray-50 transition-colors group">
+                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">#${order.id}</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">${order.customer}</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">${order.package}</td>
+                                        <td class="px-6 py-4">
+                                            <span class="px-3 py-1 rounded-full text-xs font-semibold border ${getBadgeStyles(order.status)}">${order.status}</span>
+                                        </td>
+                                        <td class="px-6 py-4 text-right">
+                                            <button onclick="window.navigateTo('order-detail', '${order.id}')" class="text-blue-600 hover:text-blue-800 text-sm font-medium hover:underline">View Details</button>
+                                        </td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        const renderOrders = () => {
+            const filteredOrders = state.filter === 'All' 
+                ? MOCK_ORDERS 
+                : MOCK_ORDERS.filter(o => o.status === state.filter);
+
+            return `
+            <div class="space-y-6 animate-fade-in">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <h2 class="text-2xl font-bold text-gray-800">Orders Management</h2>
+                    <div class="flex gap-2">
+                        ${['All', 'Pending', 'In Progress', 'Delivered'].map(f => `
+                            <button onclick="window.setFilter('${f}')" 
+                                class="px-4 py-2 rounded-lg text-sm font-medium transition-colors ${state.filter === f ? 'bg-blue-600 text-white shadow-md' : 'bg-white text-gray-600 hover:bg-gray-50 border border-gray-200'}">
+                                ${f}
+                            </button>
+                        `).join('')}
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden min-h-[500px]">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead class="bg-gray-50 text-gray-500 text-xs uppercase font-semibold">
+                                <tr>
+                                    <th class="px-6 py-4">Order ID</th>
+                                    <th class="px-6 py-4">Customer</th>
+                                    <th class="px-6 py-4">Date</th>
+                                    <th class="px-6 py-4">Amount</th>
+                                    <th class="px-6 py-4">Status</th>
+                                    <th class="px-6 py-4 text-right">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-100">
+                                ${filteredOrders.map(order => `
+                                    <tr class="hover:bg-gray-50 transition-colors">
+                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">#${order.id}</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">
+                                            <div class="font-medium">${order.customer}</div>
+                                            <div class="text-xs text-gray-400">${order.email}</div>
+                                        </td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">${order.date}</td>
+                                        <td class="px-6 py-4 text-sm font-medium text-gray-900">${order.amount}</td>
+                                        <td class="px-6 py-4">
+                                            <span class="px-3 py-1 rounded-full text-xs font-semibold border ${getBadgeStyles(order.status)}">${order.status}</span>
+                                        </td>
+                                        <td class="px-6 py-4 text-right">
+                                            <button onclick="window.navigateTo('order-detail', '${order.id}')" class="px-3 py-1 bg-white border border-gray-300 text-gray-700 rounded-lg text-xs hover:bg-gray-50">Manage</button>
+                                        </td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                        ${filteredOrders.length === 0 ? `
+                            <div class="p-12 text-center text-gray-400">
+                                <i data-lucide="filter" class="w-12 h-12 mx-auto mb-3 opacity-20"></i>
+                                No orders found with this status.
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            </div>
+            `;
+        };
+
+        const renderOrderDetail = () => {
+            const order = state.selectedOrder;
+            if (!order) return '';
+            
+            return `
+            <div class="max-w-4xl mx-auto space-y-6 animate-fade-in">
+                <div class="flex items-center gap-4 mb-6">
+                    <button onclick="window.navigateTo('orders')" class="p-2 hover:bg-gray-100 rounded-full transition-colors">
+                        <i data-lucide="chevron-left" class="w-6 h-6 text-gray-500"></i>
+                    </button>
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800">Order #${order.id}</h2>
+                        <p class="text-gray-500 text-sm">Created on ${order.date}</p>
+                    </div>
+                    <div class="ml-auto">
+                        <span class="px-3 py-1 rounded-full text-xs font-semibold border ${getBadgeStyles(order.status)}">${order.status}</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:col-span-1 h-fit">
+                        <h3 class="text-lg font-bold text-gray-900 mb-4 border-b pb-2">Customer Info</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="text-xs font-semibold text-gray-400 uppercase">Name</label>
+                                <p class="text-gray-800 font-medium">${order.customer}</p>
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold text-gray-400 uppercase">Contact</label>
+                                <p class="text-gray-800">${order.email}</p>
+                            </div>
+                            <div>
+                                <label class="text-xs font-semibold text-gray-400 uppercase">Payment Status</label>
+                                <p class="text-green-600 font-medium flex items-center gap-1">
+                                    <i data-lucide="check-circle" class="w-3 h-3"></i> Paid
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-2 space-y-6">
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                            <h3 class="text-lg font-bold text-gray-900 mb-4 border-b pb-2">Order Information</h3>
+                            <div class="grid grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label class="text-xs font-semibold text-gray-400 uppercase">Package</label>
+                                    <p class="text-lg font-medium text-blue-900">${order.package}</p>
+                                </div>
+                                <div>
+                                    <label class="text-xs font-semibold text-gray-400 uppercase">Add-ons</label>
+                                    <p class="text-gray-800">N/A</p>
+                                </div>
+                            </div>
+                            <div class="mb-6">
+                                <label class="text-xs font-semibold text-gray-400 uppercase">Song Description</label>
+                                <p class="text-gray-700 mt-1 bg-gray-50 p-4 rounded-lg border border-gray-100">"${order.description}"</p>
+                            </div>
+                            
+                            <div class="flex gap-4 pt-4 border-t">
+                                <button onclick="window.navigateTo('upload', '${order.id}')" class="flex-1 flex items-center justify-center px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-all">
+                                    <i data-lucide="upload" class="w-4 h-4 mr-2"></i> Upload Song
+                                </button>
+                                <button class="flex-1 flex items-center justify-center px-4 py-2 rounded-lg border-2 border-blue-600 text-blue-600 hover:bg-blue-50 transition-all">
+                                    Mark as Delivered
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
+        };
+
+        const renderUpload = () => {
+            const orderId = state.selectedOrder ? `#${state.selectedOrder.id}` : "#1245";
+            return `
+            <div class="max-w-2xl mx-auto animate-fade-in">
+                <h2 class="text-2xl font-bold text-gray-800 mb-6">Upload Song</h2>
+                
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-8">
+                    <div class="mb-6 flex justify-between items-center">
+                        <span class="text-gray-600">Uploading for Order:</span>
+                        <span class="font-bold text-lg bg-gray-100 px-3 py-1 rounded">${orderId}</span>
+                    </div>
+
+                    <div id="drop-zone" class="relative h-64 border-2 border-dashed border-gray-300 bg-gray-50 rounded-xl flex flex-col items-center justify-center transition-all hover:bg-blue-50 hover:border-blue-400 cursor-pointer">
+                        <div class="p-4 bg-white rounded-full shadow-sm mb-4">
+                            <i data-lucide="upload" class="w-8 h-8 text-blue-500"></i>
+                        </div>
+                        <p class="text-lg font-medium text-gray-700">Drag and drop a file here</p>
+                        <p class="text-sm text-gray-400 mt-2">or click to select</p>
+                        <input type="file" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                    </div>
+
+                    <div class="mt-8 flex justify-end">
+                        <button class="w-full md:w-auto px-8 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white font-medium transition-all">
+                            Select File
+                        </button>
+                    </div>
+                </div>
+            </div>
+            `;
+        };
+
+        const renderSettings = () => `
+            <div class="max-w-3xl mx-auto space-y-6 animate-fade-in">
+                <h2 class="text-2xl font-bold text-gray-800">Settings</h2>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i data-lucide="dollar-sign" class="w-6 h-6 text-blue-600"></i>
+                        <h3 class="text-lg font-bold text-gray-900">Edit Package Prices</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Basic Package</label>
+                            <input type="text" class="w-full p-2 border rounded-lg" value="₹1,000">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Premium Package</label>
+                            <input type="text" class="w-full p-2 border rounded-lg" value="₹2,500">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Exclusive Package</label>
+                            <input type="text" class="w-full p-2 border rounded-lg" value="₹5,000">
+                        </div>
+                    </div>
+                    <div class="mt-6 pt-6 border-t">
+                        <h4 class="font-semibold text-gray-800 mb-4">Discounts & Add-ons</h4>
+                        <div class="flex gap-4">
+                            <button class="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 text-sm">Create Discount Code</button>
+                            <button class="px-4 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 text-sm">Modify Add-on Pricing</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i data-lucide="user" class="w-6 h-6 text-purple-600"></i>
+                        <h3 class="text-lg font-bold text-gray-900">Admin Security</h3>
+                    </div>
+                    <form class="space-y-4" onsubmit="event.preventDefault()">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">New Password</label>
+                            <input type="password" class="w-full p-2 border rounded-lg" placeholder="Enter new password">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Confirm Password</label>
+                            <input type="password" class="w-full p-2 border rounded-lg" placeholder="Confirm new password">
+                        </div>
+                        <div class="flex justify-end">
+                            <button class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Update Password</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        `;
+
+        const renderSidebar = () => `
+            <aside class="fixed md:relative z-30 h-full bg-white border-r border-gray-200 transition-all duration-300 ease-in-out flex flex-col
+                ${state.isSidebarOpen ? 'w-64 translate-x-0' : 'w-0 md:w-0 -translate-x-full md:-translate-x-full opacity-0 md:opacity-0 overflow-hidden'}">
+                <div class="p-6 border-b border-gray-100 flex items-center justify-between">
+                    <div class="flex items-center gap-2">
+                        <div class="bg-blue-600 p-2 rounded-lg">
+                            <i data-lucide="music" class="w-6 h-6 text-white"></i>
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-bold text-gray-900 leading-none">Forever</h1>
+                            <span class="text-sm font-semibold text-blue-600 uppercase tracking-wider">Tunes</span>
+                        </div>
+                    </div>
+                    <button class="md:hidden" onclick="window.toggleSidebar()">
+                        <i data-lucide="x" class="w-6 h-6 text-gray-500"></i>
+                    </button>
+                </div>
+
+                <nav class="flex-1 overflow-y-auto py-6 px-3 space-y-1">
+                    <button onclick="window.navigateTo('dashboard')" 
+                        class="w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${state.currentView === 'dashboard' ? 'bg-blue-50 text-blue-700 font-medium' : 'text-gray-600 hover:bg-gray-50'}">
+                        <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+                        Dashboard
+                    </button>
+                    <button onclick="window.navigateTo('orders')" 
+                        class="w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${['orders', 'order-detail'].includes(state.currentView) ? 'bg-blue-50 text-blue-700 font-medium' : 'text-gray-600 hover:bg-gray-50'}">
+                        <i data-lucide="file-audio" class="w-5 h-5"></i>
+                        Orders
+                    </button>
+                    <button onclick="window.navigateTo('settings')" 
+                        class="w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${state.currentView === 'settings' ? 'bg-blue-50 text-blue-700 font-medium' : 'text-gray-600 hover:bg-gray-50'}">
+                        <i data-lucide="settings" class="w-5 h-5"></i>
+                        Settings
+                    </button>
+                </nav>
+
+                <div class="p-4 border-t border-gray-100">
+                    <div class="bg-blue-50 rounded-xl p-4 mb-4">
+                        <p class="text-xs font-semibold text-blue-600 uppercase mb-1">Support</p>
+                        <p class="text-sm text-gray-600 mb-2">Need help with the panel?</p>
+                        <button class="text-xs font-medium text-blue-700 hover:underline">Contact Dev Team</button>
+                    </div>
+                    <button onclick="window.handleLogout()" class="w-full flex items-center gap-3 px-4 py-2 text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                        <i data-lucide="log-out" class="w-5 h-5"></i>
+                        Sign Out
+                    </button>
+                </div>
+            </aside>
+        `;
+
+        const renderMainLayout = () => `
+            <div class="flex h-screen bg-gray-50 overflow-hidden font-sans text-gray-800">
+                ${renderSidebar()}
+
+                <div class="flex-1 flex flex-col min-w-0">
+                    <header class="bg-white h-16 border-b border-gray-200 flex items-center justify-between px-6 sticky top-0 z-20">
+                        <div class="flex items-center gap-4">
+                            <button onclick="window.toggleSidebar()" class="p-2 hover:bg-gray-100 rounded-lg text-gray-600 focus:outline-none">
+                                <i data-lucide="menu" class="w-6 h-6"></i>
+                            </button>
+                            <div class="hidden md:flex items-center text-gray-400 bg-gray-100 rounded-lg px-3 py-1.5 w-64">
+                                <i data-lucide="search" class="w-4 h-4 mr-2"></i>
+                                <input type="text" placeholder="Search orders..." class="bg-transparent border-none focus:outline-none text-sm w-full text-gray-700" />
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <button class="relative p-2 hover:bg-gray-100 rounded-full text-gray-500">
+                                <i data-lucide="bell" class="w-5 h-5"></i>
+                                <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+                            </button>
+                            <div class="flex items-center gap-3 pl-4 border-l border-gray-200">
+                                <div class="text-right hidden md:block">
+                                    <p class="text-sm font-medium text-gray-900">Admin User</p>
+                                    <p class="text-xs text-gray-500">Super Admin</p>
+                                </div>
+                                <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-700 font-bold border-2 border-white shadow-sm">
+                                    A
+                                </div>
+                            </div>
+                        </div>
+                    </header>
+
+                    <main class="flex-1 overflow-y-auto p-4 md:p-8 relative">
+                        ${state.currentView === 'dashboard' ? renderDashboard() : ''}
+                        ${state.currentView === 'orders' ? renderOrders() : ''}
+                        ${state.currentView === 'order-detail' ? renderOrderDetail() : ''}
+                        ${state.currentView === 'upload' ? renderUpload() : ''}
+                        ${state.currentView === 'settings' ? renderSettings() : ''}
+                    </main>
+                </div>
+
+                ${(window.innerWidth < 768 && state.isSidebarOpen) ? 
+                    `<div class="fixed inset-0 bg-black bg-opacity-50 z-20" onclick="window.toggleSidebar()"></div>` 
+                    : ''}
+            </div>
+        `;
+
+        // --- Main Render Function ---
+        function render() {
+            const app = document.getElementById('app');
+            
+            if (!state.isAuthenticated) {
+                app.innerHTML = renderLogin();
+            } else {
+                app.innerHTML = renderMainLayout();
+            }
+
+            // Initialize Icons after rendering HTML
+            lucide.createIcons();
+        }
+
+        // --- Initial Render ---
+        render();
+
+        // Handle Window Resize for Sidebar
+        window.addEventListener('resize', () => {
+            const isMobile = window.innerWidth < 768;
+            if (isMobile && state.isSidebarOpen) {
+                state.isSidebarOpen = false;
+                render();
+            } else if (!isMobile && !state.isSidebarOpen) {
+                state.isSidebarOpen = true;
+                render();
+            }
+        });
+
+    </script>
+     
+</body>
+</html>  
